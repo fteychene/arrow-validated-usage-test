@@ -74,8 +74,8 @@ object ConfigurationRules : ApplicationValidation<ConfigurationError>() {
 
 *Result* :  
 ```
- val invalidConfig = ConfigurationRules.validateConfiguration(Configuration(url = "coucou", token = "abcdefgh"))
- // invalidConfig = Invalid(e=NonEmptyList(all=['id' is missing, coucou is not an https URL, coucou is not in restricted domain]))
+ val invalidConfig = ConfigurationRules.validateConfiguration(Configuration(url = "coucou", token = "abcdefgh!_rasc"))
+ // invalidConfig = InvalidInvalid(e=NonEmptyList(all=['token' is not base54 encoded, 'id' is missing, coucou is not an https URL, coucou is not in restricted domain]))
 
  val validConfig = ConfigurationRules.validateConfiguration(Configuration(id="c92a3de0-f898-4664-9625-9fb929058e1b", url = "https://subdomain.staticdomain.net/coucou", token = "SGVsbG8gdG8geW91ICE="))
  // validConfig = Valid(a=OutputConfiguration(id=c92a3de0-f898-4664-9625-9fb929058e1b, url=https://subdomain.staticdomain.net/coucou, token=Some(Hello to you !)))
